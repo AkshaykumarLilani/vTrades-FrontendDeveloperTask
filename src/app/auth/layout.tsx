@@ -1,4 +1,6 @@
 import React from 'react';
+import { AuthSidePanel } from '@/components/auth/AuthSidePanel';
+
 
 export default function AuthLayout({
     children,
@@ -6,8 +8,11 @@ export default function AuthLayout({
     children: React.ReactNode;
 }) {
     return (
-        <div className="flex min-h-screen flex-col items-center justify-center py-12 sm:px-6 lg:px-8 bg-gray-50">
-            <div className="w-full max-w-md space-y-8">
+        <div className="flex h-screen items-center justify-start gap-8 p-8 bg-background overflow-hidden">
+            <div className='w-full flex-1 h-full'>
+                <AuthSidePanel />
+            </div>
+            <div className="w-full flex-1 flex flex-col items-start justify-center">
                 {children}
             </div>
         </div>
