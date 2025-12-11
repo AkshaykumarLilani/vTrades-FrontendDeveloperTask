@@ -3,6 +3,8 @@ import { Header } from '@/components/ui/Header';
 import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
 
+import { AuthContainer } from './AuthContainer';
+
 interface CreateNewPasswordProps {
     onUpdatePassword: (password: string) => void;
 }
@@ -25,7 +27,7 @@ export const CreateNewPassword: React.FC<CreateNewPasswordProps> = ({
     };
 
     return (
-        <div className="flex flex-col gap-6 w-full max-w-md mx-auto">
+        <AuthContainer>
             <Header
                 title="Create New Password"
                 subtitle="Choose a strong and secure password to keep your account safe. Make sure it's easy for you to remember, but hard for others to guess!"
@@ -54,6 +56,6 @@ export const CreateNewPassword: React.FC<CreateNewPasswordProps> = ({
                     Update Password
                 </Button>
             </form>
-        </div>
+        </AuthContainer>
     );
 };

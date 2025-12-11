@@ -4,7 +4,7 @@ import { login_side_img } from '@/assets';
 
 export const AuthSidePanel = () => {
     return (
-        <div className='w-full h-full relative overflow-hidden rounded-[20px]'>
+        <div className='w-full h-full relative overflow-hidden rounded-20'>
             <Image
                 src={login_side_img}
                 alt="Login"

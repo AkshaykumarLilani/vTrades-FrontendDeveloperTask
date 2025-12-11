@@ -6,6 +6,8 @@ import { toast } from 'sonner';
 import { timer_icon } from '@/assets';
 import Image from 'next/image';
 
+import { AuthContainer } from './AuthContainer';
+
 interface EnterOtpProps {
     email: string;
     onResend: () => void;
@@ -42,7 +44,7 @@ export const EnterOtp: React.FC<EnterOtpProps> = ({
     };
 
     return (
-        <div className="flex flex-col gap-6 w-full max-w-md mx-auto">
+        <AuthContainer>
             <Header
                 title="Enter OTP"
                 subtitle={`Enter the OTP that we have sent to your email address ${email}.`}
@@ -63,12 +65,12 @@ export const EnterOtp: React.FC<EnterOtpProps> = ({
 
                 <div className="flex items-center gap-2">
                     {timer > 0 ? (
-                        <div className="flex items-center gap-2 text-muted-foreground text-sm">
+                        <div className="flex items-center gap-2 text-foreground text-sm">
                             <Image
                                 src={timer_icon}
                                 alt="Timer"
-                                width={16}
-                                height={16}
+                                width={18}
+                                height={18}
                             />
                             <span>{timer} Sec</span>
                         </div>
@@ -92,6 +94,6 @@ export const EnterOtp: React.FC<EnterOtpProps> = ({
                     Continue
                 </Button>
             </div>
-        </div>
+        </AuthContainer>
     );
 };

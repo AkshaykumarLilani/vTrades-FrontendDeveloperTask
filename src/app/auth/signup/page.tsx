@@ -7,9 +7,11 @@ import { google_logo, microsoft_logo } from '@/assets';
 import { SeparatorWithText } from '@/components/ui/SeparatorWithText';
 import React from 'react';
 
+import { AuthContainer } from '@/components/auth/AuthContainer';
+
 export default function SignUpPage() {
     return (
-        <div className="flex flex-col gap-6 w-full max-w-md mx-auto">
+        <AuthContainer>
             <Header
                 title="Sign Up"
                 subtitle="Manage your workspace seamlessly. Sign up to continue."
@@ -74,7 +76,7 @@ export default function SignUpPage() {
                 </Button>
             </div>
 
-            <div className="text-center text-sm text-muted-foreground mt-4">
+            <div className="text-center text-sm text-foreground mt-4">
                 Already have an account?{' '}
                 <Link
                     href="/auth/signin"
@@ -83,6 +85,6 @@ export default function SignUpPage() {
                     Sign In
                 </Link>
             </div>
-        </div>
+        </AuthContainer>
     );
 }

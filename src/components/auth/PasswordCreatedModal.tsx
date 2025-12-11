@@ -21,7 +21,7 @@ export const PasswordCreatedModal: React.FC<PasswordCreatedModalProps> = ({
             primaryButtonText="Okay"
             onPrimaryClick={onPrimaryClick}
             icon={
-                <div className="flex h-20 w-20 items-center justify-center rounded-full bg-[#1D9200]">
+                <div className="flex h-20 w-20 items-center justify-center rounded-full bg-success">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="40"

@@ -12,6 +12,8 @@ import { useRouter } from 'next/navigation';
 
 type Step = 'EMAIL' | 'LINK_SENT' | 'OTP' | 'NEW_PASSWORD' | 'PASSWORD_CREATED';
 
+import { AuthContainer } from '@/components/auth/AuthContainer';
+
 export default function ForgotPasswordPage() {
     const router = useRouter();
     const [step, setStep] = useState<Step>('EMAIL');
@@ -71,7 +73,7 @@ export default function ForgotPasswordPage() {
     return (
         <div className="w-full">
             {(step === 'EMAIL' || step === 'LINK_SENT') && (
-                <div className="flex flex-col gap-6 w-full max-w-md mx-auto">
+                <AuthContainer>
                     <Header
                         title="Forgot Your Password?"
                         subtitle="Don't worry! Enter your email address, and we'll send you a link to reset it."
@@ -93,7 +95,7 @@ export default function ForgotPasswordPage() {
                             Submit
                         </Button>
                     </form>
-                </div>
+                </AuthContainer>
             )}
 
             <LinkSentModal

@@ -13,7 +13,7 @@ export const SeparatorWithText: React.FC<SeparatorWithTextProps> = ({
                 <span className="w-full border-t border-secondary" />
             </div>
             <div className="relative flex justify-center text-xs">
-                <span className="bg-background px-2 text-muted-foreground">
+                <span className="bg-background px-2 text-foreground">
                     {text}
                 </span>
             </div>

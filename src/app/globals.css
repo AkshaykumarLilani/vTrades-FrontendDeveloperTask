@@ -10,14 +10,14 @@
   --secondary: #30303D;
   --secondary-foreground: #FFFFFF;
 
-  --muted: #30303D;
+  --muted: #1D1E26;
   --muted-foreground: #85898B80;
 
   --destructive: #D33C43;
   --destructive-foreground: #FFFFFF;
 
-  --sucess: #1D9200;
-  --sucess-foreground: #FFFFFF;
+  --success: #1D9200;
+  --success-foreground: #FFFFFF;
 
   --radius: 0.5rem;
 }
@@ -44,6 +44,9 @@
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
 
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
@@ -51,7 +54,10 @@
   --radius-sm: calc(var(--radius) - 2px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
+  --radius-20: 1.25rem;
 
+  --spacing-12_5: 3.125rem;
+  --text-32: 2rem;
   --font-sans: var(--font-source-sans);
 }
 

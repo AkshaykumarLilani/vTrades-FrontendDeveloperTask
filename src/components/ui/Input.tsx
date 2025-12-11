@@ -25,7 +25,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
                 <div className="relative">
                     <input
                         type={inputType}
-                        className={`flex h-10 w-full rounded-md bg-secondary px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 ${error ? 'border border-destructive focus-visible:ring-destructive' : ''
+                        className={`flex h-12.5 w-full rounded-md bg-muted px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground border border-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 ${error ? 'border border-destructive focus-visible:ring-destructive' : ''
                             } ${className}`}
                         ref={ref}
                         {...props}

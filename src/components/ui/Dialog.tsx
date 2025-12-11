@@ -26,21 +26,20 @@ export const Dialog: React.FC<DialogProps> = ({
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
             <div className="relative w-full max-w-md rounded-lg bg-secondary p-6 shadow-lg flex flex-col items-center text-center">
                 <div className="mb-4">{icon}</div>
-                <h2 className="mb-2 text-[20px] font-semibold text-primary-foreground">
+                <h2 className="mb-2 text-xl font-semibold text-primary-foreground">
                     {title}
                 </h2>
-                <p className="mb-6 text-[14px] text-[#DADADA]">
+                <p className="mb-6 text-sm text-muted-foreground">
                     {subtitle}
                 </p>
                 <Button
                     variant="primary"
-                    className="w-full text-[16px]"
+                    className="w-full text-base"
                     onClick={onPrimaryClick}
                 >
                     {primaryButtonText}
                 </Button>
             </div>
-            {/* Overlay click to close - optional, but good UX */}
             <div className="absolute inset-0 -z-10" onClick={onClose} />
         </div>
     );

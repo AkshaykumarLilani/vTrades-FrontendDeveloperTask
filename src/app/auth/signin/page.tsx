@@ -8,9 +8,11 @@ import { google_logo, microsoft_logo } from '@/assets';
 import { SeparatorWithText } from '@/components/ui/SeparatorWithText';
 import React from 'react';
 
+import { AuthContainer } from '@/components/auth/AuthContainer';
+
 export default function SignInPage() {
     return (
-        <div className="flex flex-col gap-6 w-full max-w-md mx-auto">
+        <AuthContainer>
             <Header
                 title="Sign In"
                 subtitle="Manage your workspace seamlessly. Sign in to continue."
@@ -34,7 +36,7 @@ export default function SignInPage() {
                     <Checkbox label="Remember me" />
                     <Link
                         href="/auth/forgotpassword"
-                        className="text-sm font-medium text-primary hover:underline"
+                        className="text-xs font-medium text-primary hover:underline"
                     >
                         Forgot Password?
                     </Link>
@@ -80,7 +82,7 @@ export default function SignInPage() {
                 </Button>
             </div>
 
-            <div className="text-center text-sm text-muted-foreground mt-4">
+            <div className="text-center text-xs text-foreground mt-4">
                 Don&apos;t have an account?{' '}
                 <Link
                     href="/auth/signup"
@@ -89,6 +91,6 @@ export default function SignInPage() {
                     Sign Up
                 </Link>
             </div>
-        </div>
+        </AuthContainer>
     );
 }
