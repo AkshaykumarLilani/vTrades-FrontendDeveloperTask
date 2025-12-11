@@ -36,7 +36,7 @@ export default function SignUpPage() {
                     />
                 </div>
 
-                <Button className="w-full mt-2" size="lg">
+                <Button className="w-full mt-2">
                     Sign Up
                 </Button>
             </form>
@@ -47,7 +47,6 @@ export default function SignUpPage() {
                 <Button
                     variant="secondary"
                     className="w-full relative"
-                    size="lg"
                     icon={
                         <Image
                             src={google_logo}
@@ -57,12 +56,11 @@ export default function SignUpPage() {
                         />
                     }
                 >
-                    Sign In with Google
+                    Sign Up with Google
                 </Button>
                 <Button
                     variant="secondary"
                     className="w-full relative"
-                    size="lg"
                     icon={
                         <Image
                             src={microsoft_logo}
@@ -72,7 +70,7 @@ export default function SignUpPage() {
                         />
                     }
                 >
-                    Sign In with Microsoft
+                    Sign Up with Microsoft
                 </Button>
             </div>
 

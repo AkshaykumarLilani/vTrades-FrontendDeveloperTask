@@ -87,7 +87,6 @@ export const EnterOtp: React.FC<EnterOtpProps> = ({
 
                 <Button
                     className="w-full"
-                    size="lg"
                     onClick={() => onContinue(otp)}
                     disabled={otp.length !== 6}
                 >

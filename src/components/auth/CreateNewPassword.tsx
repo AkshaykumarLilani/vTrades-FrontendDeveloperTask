@@ -52,7 +52,7 @@ export const CreateNewPassword: React.FC<CreateNewPasswordProps> = ({
                     />
                 </div>
 
-                <Button className="w-full" size="lg" type="submit">
+                <Button className="w-full" type="submit">
                     Update Password
                 </Button>
             </form>

@@ -32,10 +32,10 @@ export default function Home() {
 
         <div className="flex gap-4 items-center justify-center mt-8">
           <Link href="/auth/signin">
-            <Button size="lg">Sign In</Button>
+            <Button>Sign In</Button>
           </Link>
           <Link href="/auth/signup">
-            <Button variant="secondary" size="lg">
+            <Button variant="secondary">
               Sign Up
             </Button>
           </Link>

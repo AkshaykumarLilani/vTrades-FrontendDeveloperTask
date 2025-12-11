@@ -89,7 +89,6 @@ export default function ForgotPasswordPage() {
                         />
                         <Button
                             className="w-full"
-                            size="lg"
                             type="submit"
                         >
                             Submit

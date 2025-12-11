@@ -42,7 +42,7 @@ export default function SignInPage() {
                     </Link>
                 </div>
 
-                <Button className="w-full mt-2" size="lg">
+                <Button className="w-full mt-2">
                     Sign In
                 </Button>
             </form>
@@ -53,7 +53,6 @@ export default function SignInPage() {
                 <Button
                     variant="secondary"
                     className="w-full relative"
-                    size="lg"
                     icon={
                         <Image
                             src={google_logo}
@@ -68,7 +67,6 @@ export default function SignInPage() {
                 <Button
                     variant="secondary"
                     className="w-full relative"
-                    size="lg"
                     icon={
                         <Image
                             src={microsoft_logo}
