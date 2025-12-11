@@ -1,3 +1,5 @@
+'use client';
+
 import { Header } from '@/components/ui/Header';
 import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
@@ -7,10 +9,16 @@ import Image from 'next/image';
 import { google_logo, microsoft_logo } from '@/assets';
 import { SeparatorWithText } from '@/components/ui/SeparatorWithText';
 import React from 'react';
+import { toast } from 'sonner';
 
 import { AuthContainer } from '@/components/auth/AuthContainer';
 
 export default function SignInPage() {
+    const handleNotImplemented = (e: React.MouseEvent) => {
+        e.preventDefault();
+        toast.info('Functionality not implemented');
+    };
+
     return (
         <AuthContainer>
             <Header
@@ -42,7 +50,7 @@ export default function SignInPage() {
                     </Link>
                 </div>
 
-                <Button className="w-full mt-2">
+                <Button className="w-full mt-2" onClick={handleNotImplemented}>
                     Sign In
                 </Button>
             </form>
@@ -67,6 +75,7 @@ export default function SignInPage() {
                 <Button
                     variant="secondary"
                     className="w-full relative"
+                    onClick={handleNotImplemented}
                     icon={
                         <Image
                             src={microsoft_logo}
