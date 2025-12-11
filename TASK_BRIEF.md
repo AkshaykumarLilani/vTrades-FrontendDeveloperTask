@@ -10,7 +10,7 @@ https://www.figma.com/design/EzdELVK7ujpFturhf9F9ac/FE-Task?node-id=0-1&p=f&t=ya
 ### Submission Guidelines
 #### Repository Instructions:
 1. Your time starts at receipt of the email.
-2. Write the mock API’s For the Provided Screen. Considering a mock API url Handle the Request and response. So you can write the mock API if you can. Else Just Handle with the hard code Response. Also make sure to have the proper Error Handling.
+2. Write the mock API's For the Provided Screen. Considering a mock API url Handle the Request and response. So you can write the mock API if you can. Else Just Handle with the hard code Response. Also make sure to have the proper Error Handling.
 3. Integrate Signin with Google or signin with Microsoft.
 4. Complete and Submit your project as described.
 5. Push all changes to your repository while keeping it public on GitHub and name the repository as follows:your-name/vTrades/FrontendDeveloperTask

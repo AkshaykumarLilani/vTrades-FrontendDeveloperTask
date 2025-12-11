@@ -1,0 +1,93 @@
+import React, { useRef, useState, useEffect } from 'react';
+import { Input } from './Input';
+
+interface OtpInputProps {
+    length?: number;
+    onChange: (otp: string) => void;
+}
+
+export const OtpInput: React.FC<OtpInputProps> = ({ length = 6, onChange }) => {
+    const [otp, setOtp] = useState<string[]>(new Array(length).fill(''));
+    const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
+
+    useEffect(() => {
+        if (inputRefs.current[0]) {
+            inputRefs.current[0].focus();
+        }
+    }, []);
+
+    const handleChange = (
+        index: number,
+        e: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        const value = e.target.value;
+        if (isNaN(Number(value))) return;
+
+        const newOtp = [...otp];
+        // Allow only one digit
+        newOtp[index] = value.substring(value.length - 1);
+        setOtp(newOtp);
+        onChange(newOtp.join(''));
+
+        // Move to next input if value is entered
+        if (value && index < length - 1 && inputRefs.current[index + 1]) {
+            inputRefs.current[index + 1]?.focus();
+        }
+    };
+
+    const handleKeyDown = (
+        index: number,
+        e: React.KeyboardEvent<HTMLInputElement>
+    ) => {
+        if (
+            e.key === 'Backspace' &&
+            !otp[index] &&
+            index > 0 &&
+            inputRefs.current[index - 1]
+        ) {
+            // Move to previous input on backspace if current is empty
+            inputRefs.current[index - 1]?.focus();
+        }
+    };
+
+    const handlePaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
+        e.preventDefault();
+        const pastedData = e.clipboardData.getData('text/plain').slice(0, length);
+        if (!/^\d+$/.test(pastedData)) return;
+
+        const newOtp = [...otp];
+        pastedData.split('').forEach((char, index) => {
+            newOtp[index] = char;
+            if (inputRefs.current[index]) {
+                inputRefs.current[index]!.value = char;
+            }
+        });
+        setOtp(newOtp);
+        onChange(newOtp.join(''));
+
+        // Focus the last filled input or the next empty one
+        const nextIndex = Math.min(pastedData.length, length - 1);
+        inputRefs.current[nextIndex]?.focus();
+    };
+
+    return (
+        <div className="flex gap-3 justify-between">
+            {otp.map((data, index) => (
+                <div key={index} className="w-12">
+                    <Input
+                        ref={(input) => {
+                            inputRefs.current[index] = input;
+                        }}
+                        value={data}
+                        placeholder='0'
+                        onChange={(e) => handleChange(index, e)}
+                        onKeyDown={(e) => handleKeyDown(index, e)}
+                        onPaste={handlePaste}
+                        className="w-12 h-12 text-center text-xl p-0"
+                        maxLength={1}
+                    />
+                </div>
+            ))}
+        </div >
+    );
+};

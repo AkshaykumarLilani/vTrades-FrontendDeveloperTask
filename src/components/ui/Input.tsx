@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { showing_password_icon, hidden_password_icon, error_info_icon } from '@/assets';
@@ -14,9 +16,9 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         const inputType = isPassword ? (showPassword ? 'text' : 'password') : type;
 
         return (
-            <div className="flex flex-col gap-1.5 w-full">
+            <div className="flex flex-col gap-3 w-full">
                 {label && (
-                    <label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-foreground">
+                    <label className="text-xs font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-foreground">
                         {label}
                     </label>
                 )}

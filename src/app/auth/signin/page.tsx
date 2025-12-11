@@ -1,14 +1,94 @@
 import { Header } from '@/components/ui/Header';
+import { Input } from '@/components/ui/Input';
+import { Button } from '@/components/ui/Button';
+import { Checkbox } from '@/components/ui/Checkbox';
+import Link from 'next/link';
+import Image from 'next/image';
+import { google_logo, microsoft_logo } from '@/assets';
+import { SeparatorWithText } from '@/components/ui/SeparatorWithText';
 import React from 'react';
 
 export default function SignInPage() {
     return (
-        <div>
+        <div className="flex flex-col gap-6 w-full max-w-md mx-auto">
             <Header
                 title="Sign In"
                 subtitle="Manage your workspace seamlessly. Sign in to continue."
             />
-            {/* TODO: Implement Sign In Form */}
+
+            <form className="flex flex-col gap-6">
+                <div className="flex flex-col gap-6">
+                    <Input
+                        label="Email Address"
+                        placeholder="navinash@workhive.com"
+                        type="email"
+                    />
+                    <Input
+                        label="Password"
+                        placeholder="***************"
+                        type="password"
+                    />
+                </div>
+
+                <div className="flex items-center justify-between">
+                    <Checkbox label="Remember me" />
+                    <Link
+                        href="/auth/forgotpassword"
+                        className="text-sm font-medium text-primary hover:underline"
+                    >
+                        Forgot Password?
+                    </Link>
+                </div>
+
+                <Button className="w-full mt-2" size="lg">
+                    Sign In
+                </Button>
+            </form>
+
+            <SeparatorWithText />
+
+            <div className="flex flex-col gap-3">
+                <Button
+                    variant="secondary"
+                    className="w-full relative"
+                    size="lg"
+                    icon={
+                        <Image
+                            src={google_logo}
+                            alt="Google"
+                            width={20}
+                            height={20}
+                        />
+                    }
+                >
+                    Sign In with Google
+                </Button>
+                <Button
+                    variant="secondary"
+                    className="w-full relative"
+                    size="lg"
+                    icon={
+                        <Image
+                            src={microsoft_logo}
+                            alt="Microsoft"
+                            width={20}
+                            height={20}
+                        />
+                    }
+                >
+                    Sign In with Microsoft
+                </Button>
+            </div>
+
+            <div className="text-center text-sm text-muted-foreground mt-4">
+                Don&apos;t have an account?{' '}
+                <Link
+                    href="/auth/signup"
+                    className="font-medium text-primary hover:underline"
+                >
+                    Sign Up
+                </Link>
+            </div>
         </div>
     );
 }

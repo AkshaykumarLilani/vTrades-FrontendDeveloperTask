@@ -1,0 +1,22 @@
+import React from 'react';
+
+interface SeparatorWithTextProps {
+    text?: string;
+}
+
+export const SeparatorWithText: React.FC<SeparatorWithTextProps> = ({
+    text = 'or',
+}) => {
+    return (
+        <div className="relative">
+            <div className="absolute inset-0 flex items-center">
+                <span className="w-full border-t border-secondary" />
+            </div>
+            <div className="relative flex justify-center text-xs">
+                <span className="bg-background px-2 text-muted-foreground">
+                    {text}
+                </span>
+            </div>
+        </div>
+    );
+};
