@@ -19,6 +19,7 @@ interface SignUpFormProps {
 export const SignUpForm: React.FC<SignUpFormProps> = ({ email, setEmail, onSuccess }) => {
     const [password, setPassword] = React.useState('');
     const [confirmPassword, setConfirmPassword] = React.useState('');
+    const [error, setError] = React.useState('');
     const [isLoading, setIsLoading] = React.useState(false);
     const [isGoogleLoading, setIsGoogleLoading] = React.useState(false);
 
@@ -40,9 +41,10 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({ email, setEmail, onSucce
     const handleSignUp = async (e: React.FormEvent) => {
         e.preventDefault();
         if (password !== confirmPassword) {
-            toast.error("Passwords do not match");
+            setError("Passwords do not match");
             return;
         }
+        setError('');
         setIsLoading(true);
 
         try {
@@ -94,6 +96,7 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({ email, setEmail, onSucce
                     type="password"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
+                    error={error}
                     required
                     disabled={isLoading}
                 />
