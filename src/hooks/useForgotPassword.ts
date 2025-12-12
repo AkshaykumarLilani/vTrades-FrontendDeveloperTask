@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 import { validateEmail } from '@/lib/validation';
 
-export type Step = 'EMAIL' | 'LINK_SENT' | 'OTP' | 'NEW_PASSWORD' | 'PASSWORD_CREATED';
+import { Step } from '@/types/auth';
 
 export const useForgotPassword = () => {
     const router = useRouter();
