@@ -79,6 +79,7 @@ export default function SignInPage() {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
+                        disabled={isLoading}
                     />
                     <Input
                         label="Password"
@@ -87,6 +88,7 @@ export default function SignInPage() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
+                        disabled={isLoading}
                     />
                 </div>
 
@@ -100,7 +102,12 @@ export default function SignInPage() {
                     </Link>
                 </div>
 
-                <Button className="w-full mt-2" type="submit" loading={isLoading}>
+                <Button
+                    className="w-full mt-2"
+                    type="submit"
+                    loading={isLoading}
+                    disabled={!email || !password}
+                >
                     Sign In
                 </Button>
             </form>

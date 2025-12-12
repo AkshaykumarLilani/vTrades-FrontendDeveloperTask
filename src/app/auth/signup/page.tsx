@@ -103,17 +103,17 @@ export default function SignUpPage() {
                     title="Verify OTP"
                     subtitle={`Enter the OTP sent to ${email}`}
                 />
-                <div className="flex flex-col gap-6">
-                    <OtpInput onChange={setOtp} />
+                <form className="flex flex-col gap-6" onSubmit={handleVerifyOtp}>
+                    <OtpInput onChange={setOtp} disabled={isLoading} />
                     <Button
                         className="w-full mt-2"
-                        onClick={handleVerifyOtp}
+                        type="submit"
                         loading={isLoading}
                         disabled={otp.length !== 6}
                     >
                         Verify OTP
                     </Button>
-                </div>
+                </form>
                 <div className="text-center text-sm text-foreground mt-4">
                     <button
                         onClick={() => setStep('signup')}
@@ -142,6 +142,7 @@ export default function SignUpPage() {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
+                        disabled={isLoading}
                     />
                     <Input
                         label="Password"
@@ -150,6 +151,7 @@ export default function SignUpPage() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
+                        disabled={isLoading}
                     />
                     <Input
                         label="Confirm Password"
@@ -158,10 +160,16 @@ export default function SignUpPage() {
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
                         required
+                        disabled={isLoading}
                     />
                 </div>
 
-                <Button className="w-full mt-2" type="submit" loading={isLoading}>
+                <Button
+                    className="w-full mt-2"
+                    type="submit"
+                    loading={isLoading}
+                    disabled={!email || !password || !confirmPassword}
+                >
                     Sign Up
                 </Button>
             </form>

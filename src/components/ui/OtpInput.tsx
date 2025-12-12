@@ -15,6 +15,10 @@ interface OtpInputProps {
      * @param otp - The current OTP string.
      */
     onChange: (otp: string) => void;
+    /**
+     * Whether the input is disabled.
+     */
+    disabled?: boolean;
 }
 
 /**
@@ -24,20 +28,21 @@ interface OtpInputProps {
  * @param {OtpInputProps} props - The props for the OTP input.
  * @returns {JSX.Element} The rendered OTP input component.
  */
-export const OtpInput: React.FC<OtpInputProps> = ({ length = 6, onChange }) => {
+export const OtpInput: React.FC<OtpInputProps> = ({ length = 6, onChange, disabled }) => {
     const [otp, setOtp] = useState<string[]>(new Array(length).fill(''));
     const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
     useEffect(() => {
-        if (inputRefs.current[0]) {
+        if (inputRefs.current[0] && !disabled) {
             inputRefs.current[0].focus();
         }
-    }, []);
+    }, [disabled]);
 
     const handleChange = (
         index: number,
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
+        if (disabled) return;
         const value = e.target.value;
         if (isNaN(Number(value))) return;
 
@@ -57,6 +62,7 @@ export const OtpInput: React.FC<OtpInputProps> = ({ length = 6, onChange }) => {
         index: number,
         e: React.KeyboardEvent<HTMLInputElement>
     ) => {
+        if (disabled) return;
         if (
             e.key === 'Backspace' &&
             !otp[index] &&
@@ -69,6 +75,7 @@ export const OtpInput: React.FC<OtpInputProps> = ({ length = 6, onChange }) => {
     };
 
     const handlePaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
+        if (disabled) return;
         e.preventDefault();
         const pastedData = e.clipboardData.getData('text/plain').slice(0, length);
         if (!/^\d+$/.test(pastedData)) return;
@@ -103,6 +110,7 @@ export const OtpInput: React.FC<OtpInputProps> = ({ length = 6, onChange }) => {
                         onPaste={handlePaste}
                         className="w-12 h-12 text-center text-xl p-0"
                         maxLength={1}
+                        disabled={disabled}
                     />
                 </div>
             ))}

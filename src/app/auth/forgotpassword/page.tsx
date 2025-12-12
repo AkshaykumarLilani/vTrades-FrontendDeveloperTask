@@ -135,13 +135,15 @@ export default function ForgotPasswordPage() {
                             onChange={handleEmailChange}
                             error={emailError}
                             required
+                            disabled={isLoading}
                         />
                         <Button
-                            className="w-full"
+                            className="w-full mt-2"
                             type="submit"
                             loading={isLoading}
+                            disabled={!email}
                         >
-                            Submit
+                            Continue
                         </Button>
                     </form>
                 </AuthContainer>

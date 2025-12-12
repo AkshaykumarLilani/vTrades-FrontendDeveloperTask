@@ -63,6 +63,7 @@ export const CreateNewPassword: React.FC<CreateNewPasswordProps> = ({
                         type="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
+                        disabled={loading}
                     />
                     <Input
                         label="Re-enter your new password"
@@ -71,10 +72,16 @@ export const CreateNewPassword: React.FC<CreateNewPasswordProps> = ({
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
                         error={error}
+                        disabled={loading}
                     />
                 </div>
 
-                <Button className="w-full" type="submit" loading={loading}>
+                <Button
+                    className="w-full"
+                    type="submit"
+                    loading={loading}
+                    disabled={!password || !confirmPassword}
+                >
                     Update Password
                 </Button>
             </form>

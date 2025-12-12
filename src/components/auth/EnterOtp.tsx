@@ -79,18 +79,25 @@ export const EnterOtp: React.FC<EnterOtpProps> = ({
                 subtitle={`Enter the OTP that we have sent to your email address ${email}.`}
             />
 
-            <div className="flex flex-col gap-6">
+            <form
+                className="flex flex-col gap-6"
+                onSubmit={(e) => {
+                    e.preventDefault();
+                    onContinue(otp);
+                }}
+            >
                 <div>
                     <Button
                         variant="link"
                         className="p-0 h-auto text-primary"
                         onClick={handleChangeEmail}
+                        type="button"
                     >
                         Change Email Address
                     </Button>
                 </div>
 
-                <OtpInput onChange={setOtp} />
+                <OtpInput onChange={setOtp} disabled={loading} />
 
                 <div className="flex items-center gap-2">
                     {timer > 0 ? (
@@ -108,6 +115,7 @@ export const EnterOtp: React.FC<EnterOtpProps> = ({
                             variant="link"
                             className="p-0 h-auto text-primary"
                             onClick={handleResend}
+                            type="button"
                         >
                             Resend OTP
                         </Button>
@@ -116,13 +124,13 @@ export const EnterOtp: React.FC<EnterOtpProps> = ({
 
                 <Button
                     className="w-full"
-                    onClick={() => onContinue(otp)}
+                    type="submit"
                     disabled={otp.length !== 6}
                     loading={loading}
                 >
                     Continue
                 </Button>
-            </div>
+            </form>
         </AuthContainer>
     );
 };
