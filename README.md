@@ -41,6 +41,20 @@ To run the application, you need to set up environment variables for authenticat
     -   **AUTH_GOOGLE_SECRET**: Get this from the [Google Cloud Console](https://console.cloud.google.com/).
     -   **AUTH_SECRET**: A random string used to hash tokens. You can generate one using `npx auth secret`.
 
+### Authentication Status
+
+-   **Sign in with Google**: Fully implemented. Users can sign in, and the Home page will update to show the user's details and a "Sign Out" button.
+-   **Sign in with Email & Password**: Implemented using **Mock APIs** as per the task requirements. This demonstrates the UI flow and API handling (loading states, error handling, success messages) but **does not** create a persistent session or update the Home page state (as it is not integrated with NextAuth.js).
+-   **Sign in with Microsoft**: Not implemented.
+
+### Mock Authentication Credentials
+
+For testing the email/password authentication flow, use the following credentials:
+
+-   **Email**: Any email ending with `@workhive.com` (e.g., `test@workhive.com`)
+-   **Password**: Any password
+-   **OTP**: `123456`
+
 ### Running Locally
 
 Start the development server:
@@ -78,13 +92,6 @@ To run unit tests:
 ```bash
 npm test
 ```
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
--   [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
--   [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
 ---
 

@@ -101,7 +101,7 @@ export const EnterOtp: React.FC<EnterOtpProps> = ({
                                 width={18}
                                 height={18}
                             />
-                            <p className='line-height-[18px]'>{timer} Sec</p>
+                            <p className='leading-[16px]'>{timer} Sec</p>
                         </div>
                     ) : (
                         <Button
