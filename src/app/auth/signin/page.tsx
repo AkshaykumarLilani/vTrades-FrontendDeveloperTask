@@ -11,11 +11,16 @@ import { SeparatorWithText } from '@/components/ui/SeparatorWithText';
 import React from 'react';
 import { toast } from 'sonner';
 import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 import { AuthContainer } from '@/components/auth/AuthContainer';
 
 export default function SignInPage() {
     const [isGoogleLoading, setIsGoogleLoading] = React.useState(false);
+    const [isLoading, setIsLoading] = React.useState(false);
+    const [email, setEmail] = React.useState('');
+    const [password, setPassword] = React.useState('');
+    const router = useRouter();
 
     const handleNotImplemented = (e: React.MouseEvent) => {
         e.preventDefault();
@@ -32,6 +37,32 @@ export default function SignInPage() {
         }
     };
 
+    const handleSignIn = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setIsLoading(true);
+
+        try {
+            const res = await fetch('/api/auth/signin', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password }),
+            });
+
+            const data = await res.json();
+
+            if (res.ok) {
+                toast.success('Signed in successfully');
+                router.push('/');
+            } else {
+                toast.error(data.message || 'Failed to sign in');
+            }
+        } catch (error) {
+            toast.error('An error occurred. Please try again.');
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
     return (
         <AuthContainer>
             <Header
@@ -39,17 +70,23 @@ export default function SignInPage() {
                 subtitle="Manage your workspace seamlessly. Sign in to continue."
             />
 
-            <form className="flex flex-col gap-6">
+            <form className="flex flex-col gap-6" onSubmit={handleSignIn}>
                 <div className="flex flex-col gap-6">
                     <Input
                         label="Email Address"
                         placeholder="navinash@workhive.com"
                         type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
                     />
                     <Input
                         label="Password"
                         placeholder="***************"
                         type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
                     />
                 </div>
 
@@ -63,7 +100,7 @@ export default function SignInPage() {
                     </Link>
                 </div>
 
-                <Button className="w-full mt-2" onClick={handleNotImplemented}>
+                <Button className="w-full mt-2" type="submit" loading={isLoading}>
                     Sign In
                 </Button>
             </form>

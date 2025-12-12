@@ -1,9 +1,23 @@
 import React from 'react';
 
+/**
+ * Props for the Checkbox component.
+ * Extends standard HTML input attributes.
+ */
 interface CheckboxProps extends React.InputHTMLAttributes<HTMLInputElement> {
+    /**
+     * Label text to display next to the checkbox.
+     */
     label?: string;
 }
 
+/**
+ * A reusable checkbox component with a label.
+ *
+ * @param {CheckboxProps} props - The props for the checkbox.
+ * @param {React.Ref<HTMLInputElement>} ref - The ref to the input element.
+ * @returns {JSX.Element} The rendered checkbox component.
+ */
 export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
     ({ className = '', label, ...props }, ref) => {
         return (

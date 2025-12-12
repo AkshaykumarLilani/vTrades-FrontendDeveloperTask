@@ -4,11 +4,29 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { showing_password_icon, hidden_password_icon, error_info_icon } from '@/assets';
 
+/**
+ * Props for the Input component.
+ * Extends standard HTML input attributes.
+ */
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+    /**
+     * Label text to display above the input.
+     */
     label?: string;
+    /**
+     * Error message to display below the input.
+     * If present, changes the border color to destructive.
+     */
     error?: string;
 }
 
+/**
+ * A reusable input component with label, error handling, and password toggle visibility.
+ *
+ * @param {InputProps} props - The props for the input.
+ * @param {React.Ref<HTMLInputElement>} ref - The ref to the input element.
+ * @returns {JSX.Element} The rendered input component.
+ */
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     ({ className = '', type = 'text', label, error, ...props }, ref) => {
         const [showPassword, setShowPassword] = useState(false);

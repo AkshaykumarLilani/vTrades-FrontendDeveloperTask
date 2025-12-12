@@ -1,11 +1,29 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Input } from './Input';
 
+/**
+ * Props for the OtpInput component.
+ */
 interface OtpInputProps {
+    /**
+     * Number of OTP digits.
+     * @default 6
+     */
     length?: number;
+    /**
+     * Callback function called when the OTP value changes.
+     * @param otp - The current OTP string.
+     */
     onChange: (otp: string) => void;
 }
 
+/**
+ * A reusable OTP input component that handles multiple input fields for entering a one-time password.
+ * Supports auto-focus, backspace navigation, and pasting.
+ *
+ * @param {OtpInputProps} props - The props for the OTP input.
+ * @returns {JSX.Element} The rendered OTP input component.
+ */
 export const OtpInput: React.FC<OtpInputProps> = ({ length = 6, onChange }) => {
     const [otp, setOtp] = useState<string[]>(new Array(length).fill(''));
     const inputRefs = useRef<(HTMLInputElement | null)[]>([]);

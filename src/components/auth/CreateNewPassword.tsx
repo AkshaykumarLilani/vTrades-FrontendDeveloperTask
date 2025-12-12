@@ -5,12 +5,34 @@ import { Button } from '@/components/ui/Button';
 
 import { AuthContainer } from './AuthContainer';
 
+/**
+ * Props for the CreateNewPassword component.
+ */
+/**
+ * Props for the CreateNewPassword component.
+ */
 interface CreateNewPasswordProps {
+    /**
+     * Callback function called when the user submits the new password.
+     * @param password - The new password.
+     */
     onUpdatePassword: (password: string) => void;
+    /**
+     * Whether the update button is in a loading state.
+     * @default false
+     */
+    loading?: boolean;
 }
 
+/**
+ * A component for creating a new password with confirmation validation.
+ *
+ * @param {CreateNewPasswordProps} props - The props for the component.
+ * @returns {JSX.Element} The rendered CreateNewPassword component.
+ */
 export const CreateNewPassword: React.FC<CreateNewPasswordProps> = ({
     onUpdatePassword,
+    loading = false,
 }) => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
@@ -52,7 +74,7 @@ export const CreateNewPassword: React.FC<CreateNewPasswordProps> = ({
                     />
                 </div>
 
-                <Button className="w-full" type="submit">
+                <Button className="w-full" type="submit" loading={loading}>
                     Update Password
                 </Button>
             </form>

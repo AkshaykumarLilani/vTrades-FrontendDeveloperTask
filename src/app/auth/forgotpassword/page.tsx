@@ -9,6 +9,7 @@ import { EnterOtp } from '@/components/auth/EnterOtp';
 import { CreateNewPassword } from '@/components/auth/CreateNewPassword';
 import { PasswordCreatedModal } from '@/components/auth/PasswordCreatedModal';
 import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
 
 type Step = 'EMAIL' | 'LINK_SENT' | 'OTP' | 'NEW_PASSWORD' | 'PASSWORD_CREATED';
 
@@ -19,6 +20,7 @@ export default function ForgotPasswordPage() {
     const [step, setStep] = useState<Step>('EMAIL');
     const [email, setEmail] = useState('');
     const [emailError, setEmailError] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
     const validateEmail = (email: string) => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -39,31 +41,77 @@ export default function ForgotPasswordPage() {
         }
     };
 
-    const handleEmailSubmit = (e: React.FormEvent) => {
+    const handleEmailSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         const error = validateEmail(email);
         if (error) {
             setEmailError(error);
             return;
         }
-        // TODO: API call to send link
-        setStep('LINK_SENT');
+        setIsLoading(true);
+        try {
+            const res = await fetch('/api/auth/forgot-password', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email }),
+            });
+            const data = await res.json();
+            if (res.ok) {
+                setStep('LINK_SENT');
+            } else {
+                toast.error(data.message || 'Failed to send link');
+            }
+        } catch (error) {
+            toast.error('An error occurred. Please try again.');
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     const handleLinkSentOkay = () => {
         setStep('OTP');
     };
 
-    const handleOtpContinue = (otp: string) => {
-        // TODO: API call to verify OTP
-        console.log('Verifying OTP:', otp);
-        setStep('NEW_PASSWORD');
+    const handleOtpContinue = async (otp: string) => {
+        setIsLoading(true);
+        try {
+            const res = await fetch('/api/auth/forgot-password/verify', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, otp }),
+            });
+            const data = await res.json();
+            if (res.ok) {
+                setStep('NEW_PASSWORD');
+            } else {
+                toast.error(data.message || 'Failed to verify OTP');
+            }
+        } catch (error) {
+            toast.error('An error occurred. Please try again.');
+        } finally {
+            setIsLoading(false);
+        }
     };
 
-    const handleUpdatePassword = (password: string) => {
-        // TODO: API call to update password
-        console.log('Updating password:', password);
-        setStep('PASSWORD_CREATED');
+    const handleUpdatePassword = async (password: string) => {
+        setIsLoading(true);
+        try {
+            const res = await fetch('/api/auth/password-create', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, newPassword: password }),
+            });
+            const data = await res.json();
+            if (res.ok) {
+                setStep('PASSWORD_CREATED');
+            } else {
+                toast.error(data.message || 'Failed to update password');
+            }
+        } catch (error) {
+            toast.error('An error occurred. Please try again.');
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     const handlePasswordCreatedOkay = () => {
@@ -86,10 +134,12 @@ export default function ForgotPasswordPage() {
                             value={email}
                             onChange={handleEmailChange}
                             error={emailError}
+                            required
                         />
                         <Button
                             className="w-full"
                             type="submit"
+                            loading={isLoading}
                         >
                             Submit
                         </Button>
@@ -106,19 +156,24 @@ export default function ForgotPasswordPage() {
             {step === 'OTP' && (
                 <EnterOtp
                     email={email}
-                    onResend={() => console.log('Resend OTP')}
+                    onResend={() => toast.info('OTP resent')}
                     onContinue={handleOtpContinue}
+                    loading={isLoading}
                 />
             )}
 
             {(step === 'NEW_PASSWORD' || step === 'PASSWORD_CREATED') && (
-                <CreateNewPassword onUpdatePassword={handleUpdatePassword} />
+                <CreateNewPassword
+                    onUpdatePassword={handleUpdatePassword}
+                    loading={isLoading}
+                />
             )}
 
             <PasswordCreatedModal
                 isOpen={step === 'PASSWORD_CREATED'}
                 onClose={() => { }}
                 onPrimaryClick={handlePasswordCreatedOkay}
+                loading={isLoading}
             />
         </div>
     );

@@ -2,13 +2,38 @@ import React from 'react';
 import { Loader2 } from 'lucide-react';
 import Link from 'next/link';
 
+/**
+ * Props for the Button component.
+ * Extends standard HTML button attributes.
+ */
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+    /**
+     * The visual style variant of the button.
+     * @default 'primary'
+     */
     variant?: 'primary' | 'secondary' | 'link';
+    /**
+     * Optional icon to display before the button text.
+     */
     icon?: React.ReactNode;
+    /**
+     * If true, displays a loading spinner and disables the button.
+     * @default false
+     */
     loading?: boolean;
+    /**
+     * If provided, renders the button as a Link component.
+     */
     href?: string;
 }
 
+/**
+ * A reusable button component that supports different variants, loading states, and icons.
+ * Can be rendered as a button or a link.
+ *
+ * @param {ButtonProps} props - The props for the button.
+ * @returns {JSX.Element} The rendered button component.
+ */
 export const Button: React.FC<ButtonProps> = ({
     className = '',
     variant = 'primary',

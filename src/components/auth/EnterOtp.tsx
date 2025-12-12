@@ -8,18 +8,47 @@ import Image from 'next/image';
 
 import { AuthContainer } from './AuthContainer';
 
+/**
+ * Props for the EnterOtp component.
+ */
 interface EnterOtpProps {
+    /**
+     * The email address to which the OTP was sent.
+     */
     email: string;
+    /**
+     * Callback function called when the user requests to resend the OTP.
+     */
     onResend: () => void;
+    /**
+     * Callback function called when the user submits the OTP.
+     * @param otp - The entered OTP.
+     */
     onContinue: (otp: string) => void;
+    /**
+     * Initial timer value in seconds for the resend button.
+     * @default 30
+     */
     resendTimer?: number;
+    /**
+     * Whether the continue button is in a loading state.
+     * @default false
+     */
+    loading?: boolean;
 }
 
+/**
+ * A component for entering an OTP (One-Time Password) with a countdown timer for resending.
+ *
+ * @param {EnterOtpProps} props - The props for the component.
+ * @returns {JSX.Element} The rendered EnterOtp component.
+ */
 export const EnterOtp: React.FC<EnterOtpProps> = ({
     email,
     onResend,
     onContinue,
     resendTimer = 30,
+    loading = false,
 }) => {
     const [otp, setOtp] = useState('');
     const [timer, setTimer] = useState(resendTimer);
@@ -72,7 +101,7 @@ export const EnterOtp: React.FC<EnterOtpProps> = ({
                                 width={18}
                                 height={18}
                             />
-                            <span>{timer} Sec</span>
+                            <p className='line-height-[18px]'>{timer} Sec</p>
                         </div>
                     ) : (
                         <Button
@@ -89,6 +118,7 @@ export const EnterOtp: React.FC<EnterOtpProps> = ({
                     className="w-full"
                     onClick={() => onContinue(otp)}
                     disabled={otp.length !== 6}
+                    loading={loading}
                 >
                     Continue
                 </Button>

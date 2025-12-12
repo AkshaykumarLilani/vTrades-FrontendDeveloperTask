@@ -9,6 +9,7 @@ interface DialogProps {
     subtitle: string;
     primaryButtonText: string;
     onPrimaryClick?: () => void;
+    loading?: boolean;
 }
 
 export const Dialog: React.FC<DialogProps> = ({
@@ -19,6 +20,7 @@ export const Dialog: React.FC<DialogProps> = ({
     subtitle,
     primaryButtonText,
     onPrimaryClick,
+    loading = false,
 }) => {
     if (!isOpen) return null;
 
@@ -36,6 +38,7 @@ export const Dialog: React.FC<DialogProps> = ({
                     variant="primary"
                     className="w-full text-base"
                     onClick={onPrimaryClick}
+                    loading={loading}
                 >
                     {primaryButtonText}
                 </Button>
