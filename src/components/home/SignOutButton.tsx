@@ -16,6 +16,9 @@ export const SignOutButton: React.FC<SignOutButtonProps> = ({ signOutAction }) =
             try {
                 await signOutAction();
             } catch (error) {
+                // When the server action calls `signOut()`, it throws a `NEXT_REDIRECT` error
+                // to handle the redirect. We need to catch this specific error and ignore it
+                // so it's not treated as an application failure.
                 if (error instanceof Error && error.message === 'NEXT_REDIRECT') {
                     return;
                 }

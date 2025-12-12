@@ -6,7 +6,7 @@ import { toast } from 'sonner';
 import { timer_icon } from '@/assets';
 import Image from 'next/image';
 
-import { AuthContainer } from './AuthContainer';
+import { AuthContainer } from '../AuthContainer';
 
 /**
  * Props for the EnterOtp component.

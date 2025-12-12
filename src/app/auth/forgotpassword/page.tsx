@@ -4,10 +4,10 @@ import React, { useState } from 'react';
 import { Header } from '@/components/ui/Header';
 import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
-import { LinkSentModal } from '@/components/auth/LinkSentModal';
-import { EnterOtp } from '@/components/auth/EnterOtp';
-import { CreateNewPassword } from '@/components/auth/CreateNewPassword';
-import { PasswordCreatedModal } from '@/components/auth/PasswordCreatedModal';
+import { LinkSentModal } from '@/components/auth/forgot-password/LinkSentModal';
+import { EnterOtp } from '@/components/auth/forgot-password/EnterOtp';
+import { CreateNewPassword } from '@/components/auth/forgot-password/CreateNewPassword';
+import { PasswordCreatedModal } from '@/components/auth/forgot-password/PasswordCreatedModal';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 

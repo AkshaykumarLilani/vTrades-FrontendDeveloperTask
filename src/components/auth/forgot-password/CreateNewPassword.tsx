@@ -3,7 +3,7 @@ import { Header } from '@/components/ui/Header';
 import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
 
-import { AuthContainer } from './AuthContainer';
+import { AuthContainer } from '../AuthContainer';
 
 /**
  * Props for the CreateNewPassword component.

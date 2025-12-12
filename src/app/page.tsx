@@ -1,7 +1,5 @@
-import Link from "next/link";
-import { Button } from "@/components/ui/Button";
 import { auth, signOut } from "@/auth";
-import { SignOutButton } from "@/components/auth/SignOutButton";
+import { SignOutButton } from "@/components/home/SignOutButton";
 import { AuthButtons } from "@/components/home/AuthButtons";
 
 export default async function Home() {
