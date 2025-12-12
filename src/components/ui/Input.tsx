@@ -43,7 +43,9 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
                 <div className="relative">
                     <input
                         type={inputType}
-                        className={`flex h-12.5 w-full rounded-md bg-muted px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground border border-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 ${error ? 'border border-destructive focus-visible:ring-destructive' : ''
+                        className={`flex h-12.5 w-full rounded-md bg-muted px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground border focus:outline-none focus:ring-0 disabled:cursor-not-allowed disabled:opacity-50 ${error
+                            ? 'border-destructive'
+                            : 'border-secondary'
                             } ${className}`}
                         ref={ref}
                         {...props}
@@ -52,7 +54,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
                         <button
                             type="button"
                             onClick={() => setShowPassword(!showPassword)}
-                            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground focus:outline-none"
+                            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground focus:outline-none focus-visible:ring-0 focus-visible:outline-none"
                             aria-label={showPassword ? 'Hide password' : 'Show password'}
                         >
                             {showPassword ? (

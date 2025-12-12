@@ -2,6 +2,7 @@
 
 import { Header } from '@/components/ui/Header';
 import { Input } from '@/components/ui/Input';
+import { OtpInput } from '@/components/ui/OtpInput';
 import { Button } from '@/components/ui/Button';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -102,19 +103,17 @@ export default function SignUpPage() {
                     title="Verify OTP"
                     subtitle={`Enter the OTP sent to ${email}`}
                 />
-                <form className="flex flex-col gap-6" onSubmit={handleVerifyOtp}>
-                    <Input
-                        label="OTP"
-                        placeholder="123456"
-                        type="text"
-                        value={otp}
-                        onChange={(e) => setOtp(e.target.value)}
-                        required
-                    />
-                    <Button className="w-full mt-2" type="submit" loading={isLoading}>
+                <div className="flex flex-col gap-6">
+                    <OtpInput onChange={setOtp} />
+                    <Button
+                        className="w-full mt-2"
+                        onClick={handleVerifyOtp}
+                        loading={isLoading}
+                        disabled={otp.length !== 6}
+                    >
                         Verify OTP
                     </Button>
-                </form>
+                </div>
                 <div className="text-center text-sm text-foreground mt-4">
                     <button
                         onClick={() => setStep('signup')}
