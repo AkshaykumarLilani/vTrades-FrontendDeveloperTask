@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { auth, signOut } from "@/auth";
 import { SignOutButton } from "@/components/auth/SignOutButton";
+import { AuthButtons } from "@/components/home/AuthButtons";
 
 export default async function Home() {
   const session = await auth();
@@ -46,16 +47,7 @@ export default async function Home() {
               <SignOutButton signOutAction={handleSignOut} />
             </div>
           ) : (
-            <>
-              <Link href="/auth/signin">
-                <Button>Sign In</Button>
-              </Link>
-              <Link href="/auth/signup">
-                <Button variant="secondary">
-                  Sign Up
-                </Button>
-              </Link>
-            </>
+            <AuthButtons />
           )}
         </div>
       </div>

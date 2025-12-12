@@ -39,7 +39,7 @@ To run the application, you need to set up environment variables for authenticat
 
     -   **AUTH_GOOGLE_ID**: Get this from the [Google Cloud Console](https://console.cloud.google.com/).
     -   **AUTH_GOOGLE_SECRET**: Get this from the [Google Cloud Console](https://console.cloud.google.com/).
-    -   **AUTH_SECRET**: A random string used to hash tokens. You can generate one using `openssl rand -base64 32`.
+    -   **AUTH_SECRET**: A random string used to hash tokens. You can generate one using `npx auth secret`.
 
 ### Running Locally
 

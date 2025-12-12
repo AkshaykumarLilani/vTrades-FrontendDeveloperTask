@@ -1,5 +1,7 @@
 import React from 'react';
 import { Dialog } from '@/components/ui/Dialog';
+import Image from 'next/image';
+import { tick_icon } from '@/assets';
 
 interface PasswordCreatedModalProps {
     isOpen: boolean;
@@ -22,19 +24,13 @@ export const PasswordCreatedModal: React.FC<PasswordCreatedModalProps> = ({
             onPrimaryClick={onPrimaryClick}
             icon={
                 <div className="flex h-20 w-20 items-center justify-center rounded-full bg-success">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="40"
-                        height="40"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="white"
-                        strokeWidth="3"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                    >
-                        <polyline points="20 6 9 17 4 12" />
-                    </svg>
+                    <Image
+                        src={tick_icon}
+                        alt="Success"
+                        width={40}
+                        height={40}
+                        className="w-10 h-10 text-white"
+                    />
                 </div>
             }
         />
