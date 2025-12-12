@@ -1,7 +1,10 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
+import { auth, signOut } from "@/auth";
 
-export default function Home() {
+export default async function Home() {
+  const session = await auth();
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-24 bg-background">
       <div className="z-10 max-w-5xl w-full items-center justify-center text-sm flex flex-col gap-8">
@@ -31,14 +34,30 @@ export default function Home() {
         </div>
 
         <div className="flex gap-4 items-center justify-center mt-8">
-          <Link href="/auth/signin">
-            <Button>Sign In</Button>
-          </Link>
-          <Link href="/auth/signup">
-            <Button variant="secondary">
-              Sign Up
-            </Button>
-          </Link>
+          {session?.user ? (
+            <div className="flex flex-col items-center gap-4">
+              <p className="text-xl font-semibold">Welcome, {session.user.name}</p>
+              <form
+                action={async () => {
+                  "use server";
+                  await signOut();
+                }}
+              >
+                <Button type="submit">Sign Out</Button>
+              </form>
+            </div>
+          ) : (
+            <>
+              <Link href="/auth/signin">
+                <Button>Sign In</Button>
+              </Link>
+              <Link href="/auth/signup">
+                <Button variant="secondary">
+                  Sign Up
+                </Button>
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </main>
