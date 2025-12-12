@@ -10,6 +10,7 @@ import { google_logo, microsoft_logo } from '@/assets';
 import { SeparatorWithText } from '@/components/ui/SeparatorWithText';
 import React from 'react';
 import { toast } from 'sonner';
+import { signIn } from 'next-auth/react';
 
 import { AuthContainer } from '@/components/auth/AuthContainer';
 
@@ -17,6 +18,10 @@ export default function SignInPage() {
     const handleNotImplemented = (e: React.MouseEvent) => {
         e.preventDefault();
         toast.info('Functionality not implemented');
+    };
+
+    const handleGoogleSignIn = () => {
+        signIn('google', { callbackUrl: '/' });
     };
 
     return (
@@ -61,6 +66,7 @@ export default function SignInPage() {
                 <Button
                     variant="secondary"
                     className="w-full relative"
+                    onClick={handleGoogleSignIn}
                     icon={
                         <Image
                             src={google_logo}
