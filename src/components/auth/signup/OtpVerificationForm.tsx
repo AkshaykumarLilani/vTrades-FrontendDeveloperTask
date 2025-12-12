@@ -35,7 +35,7 @@ export const OtpVerificationForm: React.FC<OtpVerificationFormProps> = ({ email,
             } else {
                 toast.error(data.message || 'Failed to verify OTP');
             }
-        } catch (error) {
+        } catch (_error) {
             toast.error('An error occurred. Please try again.');
         } finally {
             setIsLoading(false);

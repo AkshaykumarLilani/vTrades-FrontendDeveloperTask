@@ -31,7 +31,7 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({ email, setEmail, onSucce
         try {
             setIsGoogleLoading(true);
             await signIn('google', { callbackUrl: '/' });
-        } catch (error) {
+        } catch (_error) {
             toast.error("Failed to sign up with Google");
             setIsGoogleLoading(false);
         }
@@ -60,7 +60,7 @@ export const SignUpForm: React.FC<SignUpFormProps> = ({ email, setEmail, onSucce
             } else {
                 toast.error(data.message || 'Failed to sign up');
             }
-        } catch (error) {
+        } catch (_error) {
             toast.error('An error occurred. Please try again.');
         } finally {
             setIsLoading(false);

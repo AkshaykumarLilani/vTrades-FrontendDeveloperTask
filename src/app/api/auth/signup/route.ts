@@ -9,7 +9,7 @@ import { NextResponse } from 'next/server';
 export async function POST(request: Request) {
     try {
         const body = await request.json();
-        const { email, password, name } = body;
+        const { email, password } = body;
 
         // Simulate network delay
         await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -27,7 +27,7 @@ export async function POST(request: Request) {
             { status: 200 }
         );
 
-    } catch (error) {
+    } catch (_error) {
         return NextResponse.json(
             { message: 'Internal server error' },
             { status: 500 }

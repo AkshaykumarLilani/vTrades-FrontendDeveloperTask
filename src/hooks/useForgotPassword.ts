@@ -40,7 +40,7 @@ export const useForgotPassword = () => {
             } else {
                 toast.error(data.message || 'Failed to send link');
             }
-        } catch (error) {
+        } catch (_error) {
             toast.error('An error occurred. Please try again.');
         } finally {
             setIsLoading(false);
@@ -65,7 +65,7 @@ export const useForgotPassword = () => {
             } else {
                 toast.error(data.message || 'Failed to verify OTP');
             }
-        } catch (error) {
+        } catch (_error) {
             toast.error('An error occurred. Please try again.');
         } finally {
             setIsLoading(false);
@@ -86,7 +86,7 @@ export const useForgotPassword = () => {
             } else {
                 toast.error(data.message || 'Failed to update password');
             }
-        } catch (error) {
+        } catch (_error) {
             toast.error('An error occurred. Please try again.');
         } finally {
             setIsLoading(false);

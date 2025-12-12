@@ -28,7 +28,7 @@ export const SignInForm = () => {
         try {
             setIsGoogleLoading(true);
             await signIn('google', { callbackUrl: '/' });
-        } catch (error) {
+        } catch (_error) {
             toast.error("Failed to sign in with Google");
             setIsGoogleLoading(false);
         }
@@ -53,7 +53,7 @@ export const SignInForm = () => {
             } else {
                 toast.error(data.message || 'Failed to sign in');
             }
-        } catch (error) {
+        } catch (_error) {
             toast.error('An error occurred. Please try again.');
         } finally {
             setIsLoading(false);
