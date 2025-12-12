@@ -9,8 +9,23 @@ const sourceSans = Source_Sans_3({
 });
 
 export const metadata: Metadata = {
-  title: "vTrades Task",
-  description: "Frontend Developer Task",
+  title: "vTrades - Frontend Developer Task",
+  description: "vTrades Frontend Developer Task - Built with Next.js, Tailwind CSS, and TypeScript.",
+  icons: {
+    icon: '/favicon.ico',
+  },
+  openGraph: {
+    title: "vTrades - Frontend Developer Task",
+    description: "vTrades Frontend Developer Task - Built with Next.js, Tailwind CSS, and TypeScript.",
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'vTrades Open Graph Image',
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
