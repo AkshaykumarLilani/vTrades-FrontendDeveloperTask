@@ -1,9 +1,15 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { auth, signOut } from "@/auth";
+import { SignOutButton } from "@/components/auth/SignOutButton";
 
 export default async function Home() {
   const session = await auth();
+
+  const handleSignOut = async () => {
+    "use server";
+    await signOut();
+  };
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-24 bg-background">
@@ -37,14 +43,7 @@ export default async function Home() {
           {session?.user ? (
             <div className="flex flex-col items-center gap-4">
               <p className="text-xl font-semibold">Welcome, {session.user.name}</p>
-              <form
-                action={async () => {
-                  "use server";
-                  await signOut();
-                }}
-              >
-                <Button type="submit">Sign Out</Button>
-              </form>
+              <SignOutButton signOutAction={handleSignOut} />
             </div>
           ) : (
             <>

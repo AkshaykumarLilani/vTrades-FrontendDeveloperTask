@@ -15,13 +15,21 @@ import { signIn } from 'next-auth/react';
 import { AuthContainer } from '@/components/auth/AuthContainer';
 
 export default function SignInPage() {
+    const [isGoogleLoading, setIsGoogleLoading] = React.useState(false);
+
     const handleNotImplemented = (e: React.MouseEvent) => {
         e.preventDefault();
         toast.info('Functionality not implemented');
     };
 
-    const handleGoogleSignIn = () => {
-        signIn('google', { callbackUrl: '/' });
+    const handleGoogleSignIn = async () => {
+        try {
+            setIsGoogleLoading(true);
+            await signIn('google', { callbackUrl: '/' });
+        } catch (error) {
+            toast.error("Failed to sign in with Google");
+            setIsGoogleLoading(false);
+        }
     };
 
     return (
@@ -67,6 +75,7 @@ export default function SignInPage() {
                     variant="secondary"
                     className="w-full relative"
                     onClick={handleGoogleSignIn}
+                    loading={isGoogleLoading}
                     icon={
                         <Image
                             src={google_logo}
